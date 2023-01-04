@@ -2,7 +2,7 @@
 This README contains a quick guide on how to get eyelogiclsl set up and working on your machine.
 
 ## Download binaries
-There is a pre-built windows package of the LSL plugin. Contact info@eyelogic.de to obtain that package.
+There is a pre-built windows package of the LSL plugin. You can download it [here](https://www.eyelogicsolutions.com/downloads).
 
 ## Compile from source
 In case you prefer to build from source you can also compile EyeLogicLSL yourself. 
@@ -30,7 +30,7 @@ This repository contains an installation script that streamlines the installatio
 * have your unpacked/self-built liblsl directory somewhere on disk - note where it is located (it should contain directories include/ bin/ and lib/)
 * either copy the content of the into EyeLogicLSL/dependencies/lsl **OR** open EyeLogicLSL/install.bat ( typically through, right-click-->Edit ) and edit such that the variable lsldir points to that directory.
 
-From hereon: Remove all \< and \> from the actual calls. Choose Win32 when buildingHi  for a 32 bit target machine, choose x64 when building for a 64 bit target machine. If not specifically determined otherwise EyeLogicLSL.exe and all necesary .dll files will be copied to EyeLogicLSL/install/\<Win32 or x64\>/Release. You can either start EyeLogicLSL from there or copy all contents of the folder to a location of your choosing and start from there.
+From hereon: Remove all \< and \> from the actual calls. Choose Win32 when building for a 32 bit target machine, choose x64 when building for a 64 bit target machine. If not specifically determined otherwise EyeLogicLSL.exe and all necesary .dll files will be copied to EyeLogicLSL/install/\<Win32 or x64\>/Release. You can either start EyeLogicLSL from there or copy all contents of the folder to a location of your choosing and start from there.
 
 ### install script
 * open 'Developer Comand Prompt for Visual Studio XX'
@@ -40,7 +40,7 @@ From hereon: Remove all \< and \> from the actual calls. Choose Win32 when build
   install -A \<Win32 or x64\>
 
 ### Visual Studio
-In order to generate the Visual Studio project you first need to generate one using cmake. Afterwards you can open the generated *.sln file in Visual Studio and install EyeLogicLSL from there.
+In order to generate the Visual Studio project you first need to create the project using cmake. Afterwards you can open the cmake generated *.sln file in Visual Studio and install EyeLogicLSL from there.
 
 #### generation: command prompt
 * open the Windows 'Command Prompt'
@@ -50,7 +50,7 @@ In order to generate the Visual Studio project you first need to generate one us
   * cd build
   * call:
 
-    cmake ../src -A \<Win32 or x64\> -DLSL_DIR=<path to your liblsl directory>
+    cmake ../src -A \<Win32 or x64\> -DLSL_DIR=\<path to your liblsl directory\>
 
 #### installation
 * open EyeLogicLSL.sln in EyeLogicLSL/build this will open the project in Visual Studio
