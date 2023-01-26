@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// Copyright (C) 2019-2022, EyeLogic GmbH
+// Copyright (C) 2019-2023, EyeLogic GmbH
 //
 // Permission is hereby granted, free of charge, to any person or
 // organization obtaining a copy of the software and accompanying

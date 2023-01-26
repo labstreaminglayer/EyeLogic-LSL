@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// Copyright (C) 2019-2022, EyeLogic GmbH
+// Copyright (C) 2019-2023, EyeLogic GmbH
 //
 // Permission is hereby granted, free of charge, to any person or
 // organization obtaining a copy of the software and accompanying
@@ -63,6 +63,7 @@ string2long( std::string& s, int32& i )
 {
     char* e;
     auto  trimmed = trim( s );
+    errno         = 0; // clear errno
     int32 value   = std::strtol( trimmed.c_str( ), &e, 10 );
     if ( *e == '\0' &&   // consume the entire string
          errno == 0 ) {  // error, overflow or underflow

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// Copyright (C) 2019-2022, EyeLogic GmbH
+// Copyright (C) 2019-2023, EyeLogic GmbH
 //
 // Permission is hereby granted, free of charge, to any person or
 // organization obtaining a copy of the software and accompanying
@@ -316,7 +316,7 @@ LSLClient::listCalibrations( )
     return values;
 }
 
-void
+void STDCALL
 LSLClient::onEvent( elapi::ELApi::Event event )
 {
     if ( !m_api ) {
@@ -350,7 +350,7 @@ LSLClient::onEvent( elapi::ELApi::Event event )
     std::cout << std::flush;
 }
 
-void
+void STDCALL
 LSLClient::onGazeSample( const elapi::ELGazeSample& gazeSample )
 {
     std::unique_lock< std::mutex > lock( m_resourceMutex );

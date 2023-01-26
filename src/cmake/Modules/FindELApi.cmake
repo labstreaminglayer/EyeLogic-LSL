@@ -7,9 +7,19 @@
 
 set( FIND_ELApi_FAILURE_MESSAGE "Could not find all necessary ELApi resources. Please check that ELApi_DIR=\"${ELApi_DIR}\" points to a directory containing the include & bin directories of your desired EyeLogic SDK version." )
 
+if ( CMAKE_GENERATOR_PLATFORM STREQUAL "x64" )
+    set( BIN_SUBDIR x64 )
+elseif ( CMAKE_GENERATOR_PLATFORM STREQUAL "Win32" )
+    set( BIN_SUBDIR x86 )
+    set( ELApi_PLATFORM_SUFFIX 32 )
+else()
+    message( WARNING "Unexpected generator platfrom: ${CMAKE_GENERATOR_PLATFORM} - expect (Win32, x64)" )
+    message( FATAL_ERROR ${FIND_ELApi_FAILURE_MESSAGE} )
+endif ( CMAKE_GENERATOR_PLATFORM STREQUAL "x64" )
+
+set( ELApi_HINT_BIN ${ELApi_DIR}/bin/${BIN_SUBDIR} )
+set( ELApi_HINT_LIB ${ELApi_DIR}/bin/${BIN_SUBDIR} )
 set( ELApi_HINT_INC ${ELApi_DIR}/include )
-set( ELApi_HINT_BIN ${ELApi_DIR}/bin )
-set( ELApi_HINT_LIB ${ELApi_DIR}/bin )
 
 string( CONCAT ELApi_NAME_INC elapi/ELApi .h )
 string( CONCAT ELApi_NAME_BIN ELApi ${ELApi_PLATFORM_SUFFIX} .dll )
@@ -30,7 +40,7 @@ if( NOT ELApi_BINARY_DIR )
 	message( WARNING "Could not find ${ELApi_NAME_BIN} in ${ELApi_HINT_BIN}!" )
 	message( FATAL_ERROR ${FIND_ELApi_FAILURE_MESSAGE} )
 endif( NOT ELApi_BINARY_DIR )
-string( CONCAT ELApi_BINARY ${ELApi_BINARY_DIR} "/ELApi.dll" )
+string( CONCAT ELApi_BINARY ${ELApi_BINARY_DIR} / ${ELApi_NAME_BIN} )
 
 find_library(ELApi_LIBRARY NAMES ${ELApi_NAME_LIB}
              HINTS ${ELApi_HINT_LIB} )
@@ -47,7 +57,9 @@ find_package_handle_standard_args(ELApi  DEFAULT_MSG
 
 mark_as_advanced(ELApi_INCLUDE_DIR ELApi_BINARY ELApi_LIBRARY )
 
-set(ELApi_BINARIES ${ELApi_BINARY} )
+file( RELATIVE_PATH ELApi_BINARY_DIR_REL ${CMAKE_CURRENT_SOURCE_DIR} ${ELApi_BINARY_DIR} )
+file( GLOB ELApi_BINARIES ${ELApi_BINARY_DIR_REL}/*.dll )
+
 set(ELApi_LIBRARIES ${ELApi_LIBRARY} )
 set(ELApi_INCLUDE_DIRS ${ELApi_INCLUDE_DIR} )
 

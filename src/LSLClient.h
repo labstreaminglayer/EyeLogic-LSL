@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// Copyright (C) 2019-2022, EyeLogic GmbH
+// Copyright (C) 2019-2023, EyeLogic GmbH
 //
 // Permission is hereby granted, free of charge, to any person or
 // organization obtaining a copy of the software and accompanying
@@ -62,8 +62,8 @@ private:
                                                std::unique_lock< std::mutex >&& lock = { } );
     void                           shutdown( );
 
-    void onEvent( elapi::ELApi::Event event ) override;
-    void onGazeSample( const elapi::ELGazeSample& gazeSample ) override;
+    void STDCALL onEvent( elapi::ELApi::Event event ) override;
+    void STDCALL onGazeSample( const elapi::ELGazeSample& gazeSample ) override;
 
     void stopTracking( );
 
